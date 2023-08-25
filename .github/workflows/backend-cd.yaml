@@ -43,7 +43,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv --rm
           pipenv install
           pipenv run lint
 
@@ -63,7 +62,6 @@ jobs:
         run: |
           pip install pipenv
           pipenv install
-          pipenv --rm
           pipenv run test
 
       # There should be a step that utilizes aws-actions/amazon-ecr-login action for logging into ECR.

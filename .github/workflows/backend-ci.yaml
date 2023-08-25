@@ -45,7 +45,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv --rm
           pipenv install
           pipenv run lint
 
@@ -64,7 +63,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv --rm
           pipenv install
           pipenv run lint
 
