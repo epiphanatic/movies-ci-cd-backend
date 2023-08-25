@@ -43,7 +43,7 @@ jobs:
         run: |
           pip install pipenv
           pipenv install --dev
-          pipenv run lint
+          pipenv run test
 
   build:
     runs-on: ubuntu-latest
