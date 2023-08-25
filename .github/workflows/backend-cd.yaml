@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv install
+          pipenv install --dev
           pipenv run lint
 
   test:
@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv install
+          pipenv install --dev
           pipenv run lint
 
   build:
