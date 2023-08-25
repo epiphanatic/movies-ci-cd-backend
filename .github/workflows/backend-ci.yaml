@@ -45,11 +45,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv install
-          pipenv update
-          pipenv install
           pipenv --rm
-          pipenv run test
+          pipenv install
+          pipenv run lint
 
   build:
     runs-on: ubuntu-latest
@@ -66,11 +64,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv install
-          pipenv update
-          pipenv install
           pipenv --rm
-          pipenv run test
+          pipenv install
+          pipenv run lint
 
       # then build with Docker and
       #  don't do anything else (ie do not push) as this is just to
