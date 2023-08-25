@@ -1,5 +1,0 @@
-name: cd-backend-movies
-on:
-  workflow_dispatch:
-
-jobs:
