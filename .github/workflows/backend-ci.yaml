@@ -67,6 +67,9 @@ jobs:
         run: |
           pip install pipenv
           pipenv install
+          pipenv update
+          pipenv install
+          pipenv --rm
           pipenv run test
 
       # then build with Docker and
