@@ -28,6 +28,7 @@ jobs:
           pip install pipenv
           pipenv update
           pipenv install
+          pipenv --rm
           pipenv run lint
 
   test:
@@ -45,6 +46,9 @@ jobs:
         run: |
           pip install pipenv
           pipenv install
+          pipenv update
+          pipenv install
+          pipenv --rm
           pipenv run test
 
   build:

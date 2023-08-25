@@ -28,6 +28,7 @@ jobs:
           pip install pipenv
           pipenv update
           pipenv install
+          pipenv --rm
           pipenv run lint
 
   test:
@@ -44,7 +45,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
+          pipenv update
           pipenv install
+          pipenv --rm
           pipenv run test
 
   build:
