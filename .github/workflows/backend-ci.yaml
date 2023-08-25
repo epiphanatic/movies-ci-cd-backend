@@ -60,7 +60,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv install
+          pipenv install --dev
           pipenv run lint
 
       # then build with Docker and
