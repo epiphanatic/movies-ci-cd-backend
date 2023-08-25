@@ -60,12 +60,45 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv install --dev
+          pipenv install --dev 
           pipenv run test
 
       # There should be a step that utilizes aws-actions/amazon-ecr-login action for logging into ECR.
       # (using 3rd party actions) The ECR login step should also be accessing Github Secrets for credentials. (secure approach)
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+          aws-region: us-east-1
+
+      #  i don't actually know what this is or does but it was in the class example.
+      #  i would think the above step would be enough to login to ECR
+      # - name: Login to container registry
+      #   uses: docker/login-action@v2
+      #   with:
+      #     username: ${{ secrets.REGISTRY_USERNAME }}
+      #     password: ${{ secrets.REGISTRY_PASSWORD }}
 
       # There should be a step that pushes the docker image to ECR in the AWS account.
 
       # There should be a step that deploys the application using kubectl to the kubernetes cluster
+
+      # - name: Build and push Docker image
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: <your-container-registry>/<your-image>:latest
+
+      # - name: Set up kubectl
+      #   uses: azure/setup-kubectl@v2
+      #   with:
+      #     version: 'latest'
+
+      # - name: Deploy to Kubernetes
+      #   # i don't know what kubeconfig is, ie which file in k8s
+      #   run: |
+      #     echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
+      #     kubectl apply -f k8s/ --kubeconfig=kubeconfig.yaml
