@@ -85,17 +85,17 @@ jobs:
 
       # There should be a step that deploys the application using kubectl to the kubernetes cluster
 
-      # - name: Build and push Docker image
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: .
-      #     push: true
-      #     tags: <your-container-registry>/<your-image>:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: 473659653982.dkr.ecr.us-east-1.amazonaws.com/backend:latest
 
-      # - name: Set up kubectl
-      #   uses: azure/setup-kubectl@v2
-      #   with:
-      #     version: 'latest'
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v2
+        with:
+          version: 'latest'
 
       # - name: Deploy to Kubernetes
       #   # i don't know what kubeconfig is, ie which file in k8s
