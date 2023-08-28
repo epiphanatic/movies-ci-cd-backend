@@ -105,8 +105,7 @@ jobs:
         # with:
           # version: 'latest'
 
-      # - name: Deploy to Kubernetes
-      #   # i don't know what kubeconfig is, ie which file in k8s
-      #   run: |
-      #     echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
-      #     kubectl apply -f k8s/ --kubeconfig=kubeconfig.yaml
+      - name: Deploy to Kubernetes
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
+          kubectl apply -f k8s/ --kubeconfig=kubeconfig.yaml
