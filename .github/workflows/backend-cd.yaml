@@ -101,9 +101,9 @@ jobs:
 
       - name: Set up kubectl
         uses: ThomasKliszowski/setup-kubectl@v1
-        # uses: azure/setup-kubectl@v2
-        # with:
-          # version: 'latest'
+        with:
+          kube-config: ${{ secrets.KUBECONFIG }}
+          kube-version: 1.15.0
 
       - name: Deploy to Kubernetes
         run: |
