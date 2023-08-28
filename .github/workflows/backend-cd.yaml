@@ -90,22 +90,15 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
-      # # There should be a step that deploys the application using kubectl to the kubernetes cluster
-
-      # - name: Build and push Docker image 
-      #   uses: docker/build-push-action@v4 
-      #   with:
-      #     context: .
-      #     push: true
-      #     tags: 473659653982.dkr.ecr.us-east-1.amazonaws.com/backend:latest
-
+      # set up kubectl - note that the input (secrets.KUBECONFIG) is a base64 encoded string of the entire .kube/config file in home directory
       - name: Set up kubectl
         uses: ThomasKliszowski/setup-kubectl@v1
         with:
           kube-config: ${{ secrets.KUBECONFIG }}
           kube-version: 1.15.0
 
+      # There should be a step that deploys the application using kubectl to the kubernetes cluster
       - name: Deploy to Kubernetes
         run: |
-          echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
+          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > kubeconfig.yaml
           kubectl apply -f k8s/ --kubeconfig=kubeconfig.yaml
