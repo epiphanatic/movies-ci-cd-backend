@@ -11,39 +11,39 @@ env:
 jobs:
   # note lint and test are run in parallel
   # build waits / needs both to be completed first
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out code
-  #       uses: actions/checkout@v3
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
 
-  #     - name: Setup python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: ${{env.PYTHON_VERSION}}
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{env.PYTHON_VERSION}}
 
-  #     - name: Install dependencies
-  #       run: |
-  #         pip install pipenv
-  #         pipenv install --dev
-  #         pipenv run lint
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+          pipenv run lint
 
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out code
-  #       uses: actions/checkout@v3
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
 
-  #     - name: Setup python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.10'
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-  #     - name: Install dependencies
-  #       run: |
-  #         pip install pipenv
-  #         pipenv install --dev
-  #         pipenv run test
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+          pipenv run test
 
   build:
     runs-on: ubuntu-latest
