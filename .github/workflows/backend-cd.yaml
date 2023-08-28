@@ -77,6 +77,8 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+        with:
+          mask-password: 'true'
 
       # There should be a step that pushes the docker image to ECR in the AWS account.
       - name: Build, tag, and push docker image to Amazon ECR
@@ -97,10 +99,10 @@ jobs:
       #     push: true
       #     tags: 473659653982.dkr.ecr.us-east-1.amazonaws.com/backend:latest
 
-      # - name: Set up kubectl
-      #   uses: azure/setup-kubectl@v2
-      #   with:
-      #     version: 'latest'
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v2
+        with:
+          version: 'latest'
 
       # - name: Deploy to Kubernetes
       #   # i don't know what kubeconfig is, ie which file in k8s
