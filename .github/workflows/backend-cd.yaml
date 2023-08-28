@@ -101,4 +101,4 @@ jobs:
       - name: Deploy to Kubernetes
         run: |
           echo "${{ secrets.KUBECONFIG }}" | base64 --decode > kubeconfig.yaml
-          kubectl apply -f k8s/ --kubeconfig=kubeconfig.yaml --validate=false
+          kubectl apply -f k8s/ --kubeconfig=kubeconfig.yaml
